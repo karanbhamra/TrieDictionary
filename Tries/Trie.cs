@@ -6,23 +6,28 @@ namespace Tries
 {
     public class TrieNode
     {
-        public char letter;
-        public Dictionary<char, TrieNode> children;
-        public bool isLeaf;
+        public char Letter { get; private set; }
+        public Dictionary<char, TrieNode> Children { get; private set; }
+        public bool IsLeaf { get; set; }
 
         public TrieNode(char c)
         {
-            children = new Dictionary<char, TrieNode>();
-            letter = c;
-            isLeaf = false;
+            Children = new Dictionary<char, TrieNode>();
+            Letter = c;
+            IsLeaf = false;
         }
     }
 
     public class Trie
     {
         private TrieNode root;
-
+        
         public Trie()
+        {
+            Clear();
+        }
+
+        public void Clear()
         {
             // $ is the start character
             root = new TrieNode('$');
@@ -30,10 +35,11 @@ namespace Tries
 
         public void Insert(string word)
         {
-            var children = root.children;
-            int pos = 0;
-            foreach (var letter in word)
+            var children = root.Children;
+            
+            for (var pos = 0; pos < word.Length; pos++)
             {
+                var letter = word[pos];
                 TrieNode tempTrieNode;
 
                 if (children.ContainsKey(letter))
@@ -46,22 +52,20 @@ namespace Tries
                     children.Add(letter, tempTrieNode);
                 }
 
-                children = tempTrieNode.children;
+                children = tempTrieNode.Children;
 
                 if (pos == word.Length - 1)
                 {
-                    tempTrieNode.isLeaf = true;
+                    tempTrieNode.IsLeaf = true;
                 }
-
-                pos++;
             }
         }
 
         public bool Contains(string word)
         {
-            var temp = SearchNode(word);
+            var searchNode = SearchNode(word);
 
-            if (temp != null && temp.isLeaf)
+            if (searchNode != null && searchNode.IsLeaf)
             {
                 return true;
             }
@@ -71,21 +75,15 @@ namespace Tries
 
         private TrieNode SearchNode(string word)
         {
-            var tempChildren = root.children;
-
-            StringBuilder stringBuilder = new StringBuilder();
-
+            var tempChildren = root.Children;
             TrieNode tempNode = null;
 
-            for (int i = 0; i < word.Length; i++)
+            foreach (var current in word)
             {
-                char current = word[i];
-
                 if (tempChildren.ContainsKey(current))
                 {
-                    stringBuilder.Append(current);
                     tempNode = tempChildren[current];
-                    tempChildren = tempNode.children;
+                    tempChildren = tempNode.Children;
                 }
                 else
                 {
@@ -96,43 +94,43 @@ namespace Tries
             return tempNode;
         }
 
-        public List<string> AllWords(string prefix)
+        public List<string> GetAllMatchingPrefix(string prefix)
         {
-            List<string> allwords = new List<string>();
-
+            var allWords = new List<string>();
+            
             var node = SearchNode(prefix);
 
-            GetAllWords(node, allwords, prefix);
+            GetAllWords(node, allWords, prefix);
 
-            return allwords;
+            return allWords;
         }
 
-        private void GetAllWords(TrieNode node, List<string> allwords, string prefix)
+        private void GetAllWords(TrieNode node, List<string> allWords, string prefix)
         {
             if (node == null)
             {
                 return;
             }
 
-            foreach (var nodeChild in node.children)
+            foreach (var (letter, trieNode) in node.Children)
             {
-                GetAllWords(nodeChild.Value, allwords, prefix + nodeChild.Value.letter);
+                GetAllWords(trieNode, allWords, prefix + trieNode.Letter);
             }
 
-            if (node.isLeaf)
+            if (node.IsLeaf)
             {
-                allwords.Add(prefix);
+                allWords.Add(prefix);
             }
         }
 
-        public bool StartsWith(string prefix)
-        {
-            if (SearchNode(prefix) is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
+        // private bool StartsWith(string prefix)
+        // {
+        //     if (SearchNode(prefix) == null)
+        //     {
+        //         return false;
+        //     }
+        //
+        //     return true;
+        // }
     }
 }

@@ -57,11 +57,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\karan\\RiderProjects\\Tries\\Tries\\Tries.csproj",
+      "projectUniqueName": "C:\\Users\\karan\\OneDrive\\Documents\\testingcode\\Tries\\Tries\\Tries.csproj",
       "projectName": "Tries",
-      "projectPath": "C:\\Users\\karan\\RiderProjects\\Tries\\Tries\\Tries.csproj",
+      "projectPath": "C:\\Users\\karan\\OneDrive\\Documents\\testingcode\\Tries\\Tries\\Tries.csproj",
       "packagesPath": "C:\\Users\\karan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\karan\\RiderProjects\\Tries\\Tries\\obj\\",
+      "outputPath": "C:\\Users\\karan\\OneDrive\\Documents\\testingcode\\Tries\\Tries\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\karan\\AppData\\Roaming\\NuGet\\NuGet.Config",
