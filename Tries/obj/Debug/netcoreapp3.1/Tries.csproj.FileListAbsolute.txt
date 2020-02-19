@@ -1,0 +1,14 @@
+C:\Users\karan\RiderProjects\Tries\Tries\bin\Debug\netcoreapp3.1\fulldictionary.json
+C:\Users\karan\RiderProjects\Tries\Tries\bin\Debug\netcoreapp3.1\Tries.exe
+C:\Users\karan\RiderProjects\Tries\Tries\bin\Debug\netcoreapp3.1\Tries.deps.json
+C:\Users\karan\RiderProjects\Tries\Tries\bin\Debug\netcoreapp3.1\Tries.runtimeconfig.json
+C:\Users\karan\RiderProjects\Tries\Tries\bin\Debug\netcoreapp3.1\Tries.runtimeconfig.dev.json
+C:\Users\karan\RiderProjects\Tries\Tries\bin\Debug\netcoreapp3.1\Tries.dll
+C:\Users\karan\RiderProjects\Tries\Tries\bin\Debug\netcoreapp3.1\Tries.pdb
+C:\Users\karan\RiderProjects\Tries\Tries\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\karan\RiderProjects\Tries\Tries\obj\Debug\netcoreapp3.1\Tries.csprojAssemblyReference.cache
+C:\Users\karan\RiderProjects\Tries\Tries\obj\Debug\netcoreapp3.1\Tries.AssemblyInfoInputs.cache
+C:\Users\karan\RiderProjects\Tries\Tries\obj\Debug\netcoreapp3.1\Tries.AssemblyInfo.cs
+C:\Users\karan\RiderProjects\Tries\Tries\obj\Debug\netcoreapp3.1\Tries.csproj.CopyComplete
+C:\Users\karan\RiderProjects\Tries\Tries\obj\Debug\netcoreapp3.1\Tries.dll
+C:\Users\karan\RiderProjects\Tries\Tries\obj\Debug\netcoreapp3.1\Tries.pdb
