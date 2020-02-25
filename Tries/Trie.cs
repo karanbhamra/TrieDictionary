@@ -8,20 +8,20 @@ namespace Tries
     {
         public char Letter { get; private set; }
         public Dictionary<char, TrieNode> Children { get; private set; }
-        public bool IsLeaf { get; set; }
+        public bool IsWord { get; set; }
 
         public TrieNode(char c)
         {
             Children = new Dictionary<char, TrieNode>();
             Letter = c;
-            IsLeaf = false;
+            IsWord = false;
         }
     }
 
     public class Trie
     {
         private TrieNode root;
-        
+
         public Trie()
         {
             Clear();
@@ -36,7 +36,7 @@ namespace Tries
         public void Insert(string word)
         {
             var children = root.Children;
-            
+
             for (var pos = 0; pos < word.Length; pos++)
             {
                 var letter = word[pos];
@@ -56,7 +56,7 @@ namespace Tries
 
                 if (pos == word.Length - 1)
                 {
-                    tempTrieNode.IsLeaf = true;
+                    tempTrieNode.IsWord = true;
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace Tries
         {
             var searchNode = SearchNode(word);
 
-            if (searchNode != null && searchNode.IsLeaf)
+            if (searchNode != null && searchNode.IsWord)
             {
                 return true;
             }
@@ -97,7 +97,7 @@ namespace Tries
         public List<string> GetAllMatchingPrefix(string prefix)
         {
             var allWords = new List<string>();
-            
+
             var node = SearchNode(prefix);
 
             GetAllWords(node, allWords, prefix);
@@ -117,20 +117,44 @@ namespace Tries
                 GetAllWords(trieNode, allWords, prefix + trieNode.Letter);
             }
 
-            if (node.IsLeaf)
+            if (node.IsWord)
             {
                 allWords.Add(prefix);
             }
         }
 
-        // private bool StartsWith(string prefix)
-        // {
-        //     if (SearchNode(prefix) == null)
-        //     {
-        //         return false;
-        //     }
-        //
-        //     return true;
-        // }
+        public bool Remove(string prefix)
+        {
+            // test all the cases
+            var foundNode = SearchNode(prefix);
+
+            if (foundNode == null || prefix.Length == 0)
+            {
+                return false;
+            }
+
+            foundNode.IsWord = false;
+            return true;
+
+            //if (foundNode.IsLeaf && foundNode.Children.Count > 0)
+            //{
+            //    foundNode.IsLeaf = false;
+            //    return true;
+            //}
+            //else //if (foundNode.IsLeaf && foundNode.Children.Count == 0)
+            //{
+            //    // this is a shortcut, sever the childnode from the parents children
+            //    // faster than having to recursively go back up the tree
+
+            //    var parentNode = SearchNode(prefix.Substring(0, prefix.Length - 1));
+
+            //    parentNode.Children.Remove(prefix[^1]);
+
+            //    return true;
+            //}
+
+           // return false;
+
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace Tries
             Trie trie = new Trie();
 
             trie.Insert("hey");
+            trie.Insert("he");
             trie.Insert("hell");
             trie.Insert("hello");
             trie.Insert("baby");
@@ -19,74 +20,34 @@ namespace Tries
             trie.Insert("havana");
             trie.Insert("heaven");
 
-            foreach (var word in trie.GetAllMatchingPrefix("b"))
+            while(true)
             {
-                Console.WriteLine(word);
-            }
+                Console.WriteLine("do what? remove, list");
+                string input = Console.ReadLine();
 
-            Console.WriteLine(new string('-', 20));
-            
-            foreach (var word in trie.GetAllMatchingPrefix("ha"))
-            {
-                Console.WriteLine(word);
-            }
-            
-            Console.WriteLine(new string('-', 20));
-            
-            foreach (var word in trie.GetAllMatchingPrefix("h"))
-            {
-                Console.WriteLine(word);
-            }
-            
-            trie.Clear();
-            
-            
-            string json = File.ReadAllText("fulldictionary.json");
-            
-            var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            
-            foreach (var word in dictionary.Keys)
-            {
-                trie.Insert(word.ToLower());
-            }
-            
-            do
-            {
-                Console.WriteLine("Search for words starting with");
-                string input = Console.ReadLine().ToLower();
-            
-                if (input == "x")
+                if (input.Contains("r"))
                 {
-                    break;
+                    Console.WriteLine("remove what?");
+                    string str = Console.ReadLine();
+
+                    trie.Remove(str);
                 }
-            
-                var words = trie.GetAllMatchingPrefix(input);
-            
-                if (words.Count == 0)
+                else if (input.Contains("l"))
                 {
-                    Console.WriteLine($"No words found starting with {input}");
-                }
-                else if (words.Count == 1)
-                {
-                    Console.WriteLine($"Word: {input} ------ {dictionary[input]}");
-                }
-                else
-                {
-                    foreach (var word in words)
+                    Console.WriteLine("list prefix");
+                    string str = Console.ReadLine();
+                    foreach (var item in trie.GetAllMatchingPrefix(str))
                     {
-                        if (word == input)
-                        {
-                            Console.WriteLine($"Word: {input} ------ {dictionary[input]}");
-                        }
-                        else
-                        {
-                            Console.WriteLine(word);
-                        }
+                        Console.WriteLine(item);
                     }
                 }
-            
-            
-            } while (true);
+                else if (input.Contains('x'))
+                {
+                    return;
+                }
+            }
+
+
 
 
         }
